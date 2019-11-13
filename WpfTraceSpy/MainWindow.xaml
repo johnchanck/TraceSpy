@@ -87,7 +87,7 @@
             </MenuItem>
             <MenuItem Header="_Edit" Name="Edit" SubmenuOpened="Edit_SubmenuOpened">
                 <MenuItem Header="_Copy Text" Name="CopyText" InputGestureText="Ctrl+C" Click="CopyText_Click" />
-                <MenuItem Header="Copy Full _Line" Name="CopyFullLine" Click="CopyFullLine_Click" />
+                <MenuItem Header="Copy Full _Line" Name="CopyFullLine" InputGestureText="Ctrl+Shift+C" Click="CopyFullLine_Click" />
                 <Separator />
                 <MenuItem Header="_Find..." Name="Find" InputGestureText="Ctrl+F" Click="Find_Click" />
                 <MenuItem Header="Find _Next" Name="FindNext" InputGestureText="F3" Click="FindNext_Click" />
