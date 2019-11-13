@@ -432,21 +432,27 @@ namespace TraceSpy
         private void CopyText_Click(object sender, RoutedEventArgs e)
         {
             var sb = new StringBuilder();
-            foreach (var evt in LV.SelectedItems.OfType<TraceEvent>())
+            foreach (var evt in LV.SelectedItems.OfType<TraceEvent>().OrderBy(evt => evt.Index)) // first item can be out of order hence OrderBy
             {
                 sb.AppendLine(evt.Text);
             }
-            System.Windows.Clipboard.SetText(sb.ToString());
+            // Exception: LIPBRD_E_CANT_OPEN
+            // see: https://stackoverflow.com/questions/68666/clipbrd-e-cant-open-error-when-setting-the-clipboard-from-net
+            //System.Windows.Clipboard.SetText(sb.ToString());
+            System.Windows.Clipboard.SetDataObject(new System.Windows.DataObject(System.Windows.DataFormats.StringFormat, sb.ToString()), false);
         }
 
         private void CopyFullLine_Click(object sender, RoutedEventArgs e)
         {
             var sb = new StringBuilder();
-            foreach (var evt in LV.SelectedItems.OfType<TraceEvent>())
+            foreach (var evt in LV.SelectedItems.OfType<TraceEvent>().OrderBy(evt => evt.Index)) // first item can be out of order hence OrderBy
             {
                 sb.AppendLine(evt.FullText);
             }
-            System.Windows.Clipboard.SetText(sb.ToString());
+            // Exception: LIPBRD_E_CANT_OPEN
+            // see: https://stackoverflow.com/questions/68666/clipbrd-e-cant-open-error-when-setting-the-clipboard-from-net
+            //System.Windows.Clipboard.SetText(sb.ToString());
+            System.Windows.Clipboard.SetDataObject(new System.Windows.DataObject(System.Windows.DataFormats.StringFormat, sb.ToString()), false);
         }
 
         private void Find_Click(object sender, RoutedEventArgs e)
